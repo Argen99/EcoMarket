@@ -2,6 +2,8 @@
 plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    kotlin("kapt")
+    id(libs.plugins.com.google.dagger.hilt.android.get().pluginId)
 }
 
 android {
@@ -31,12 +33,21 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
     implementation(project(":core:ui"))
 
     implementation(libs.core.ktx)
+    //Bundles
     implementation(libs.bundles.ui)
     implementation(libs.bundles.navigation)
+    //Coroutines
+    implementation(libs.kotlinx.coroutines)
+    //Hilt
+    implementation(libs.dagger.hilt.android)
+    kapt(libs.dagger.hilt.android.compiler)
 }

@@ -2,6 +2,8 @@
 plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    kotlin("kapt")
+    id(libs.plugins.com.google.dagger.hilt.android.get().pluginId)
 }
 
 android {
@@ -39,4 +41,7 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.bundles.ui)
     implementation(libs.bundles.navigation)
+
+    implementation(libs.dagger.hilt.android)
+    kapt(libs.dagger.hilt.android.compiler)
 }

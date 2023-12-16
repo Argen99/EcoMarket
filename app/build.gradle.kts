@@ -39,6 +39,9 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    hilt {
+        enableAggregatingTask = true
+    }
 }
 
 dependencies {
@@ -48,6 +51,7 @@ dependencies {
     implementation(project(":features:basket"))
     implementation(project(":features:story"))
     implementation(project(":features:info"))
+    implementation(project(":data"))
 
     implementation(libs.core.ktx)
 
