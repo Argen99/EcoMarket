@@ -1,12 +1,9 @@
 package com.example.data.di
 
+import com.example.data.BuildConfig.BASE_URL
 import com.example.data.remote.api_service.ProductApiService
-import com.example.data.remote.repository.MainRepositoryImpl
-import com.example.main.domain.repository.MainRepository
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
@@ -18,16 +15,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class DataModule {
-    @Binds
-    abstract fun provideApiRepository(mainRepository: MainRepositoryImpl): MainRepository
-}
-
-@Module
-@InstallIn(SingletonComponent::class)
-object Module {
-
-    private const val BASE_URL = "https://neobook.online/ecobak/"
+object DataModule {
 
     @Provides
     @Singleton

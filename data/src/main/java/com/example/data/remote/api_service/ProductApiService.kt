@@ -9,6 +9,6 @@ interface ProductApiService {
     suspend fun getProductCategoryList(): List<ProductCategoryDto>
 
     companion object {
-        const val PRODUCT_CATEGORY_LIST = "get-product-category-list"
+        const val PRODUCT_CATEGORY_LIST = "product-category-list"
     }
 }

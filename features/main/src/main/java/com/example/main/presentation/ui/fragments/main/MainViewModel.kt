@@ -14,7 +14,9 @@ class MainViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            repository.getProductCategoryList()
+            repository.getProductCategoryList().collect {
+
+            }
         }
     }
 }

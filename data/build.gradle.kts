@@ -13,6 +13,7 @@ android {
     defaultConfig {
         minSdk = 24
 
+        buildConfigField("String", "BASE_URL", "\"https://neobook.online/ecobak/\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -33,6 +34,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
@@ -47,6 +51,8 @@ dependencies {
     //Hilt
     implementation(libs.dagger.hilt.android)
     kapt(libs.dagger.hilt.android.compiler)
+    implementation(libs.dagger.hilt.android.extensions)
+    kapt(libs.dagger.hilt.android.extensions.processor)
     //Coroutines
     implementation(libs.kotlinx.coroutines)
 }

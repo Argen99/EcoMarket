@@ -13,6 +13,7 @@ lifecycle-viewmodel-ktx = "2.6.2"
 navigation-fragment-ktx = "2.7.5"
 navigation-ui-ktx = "2.7.5"
 hilt = "2.49"
+hilt-extensions = "1.4.0"
 retrofit = "2.9.0"
 logging-interceptor = "4.11.0"
 coroutines = "1.3.9"
@@ -42,6 +43,8 @@ espresso-core = { group = "androidx.test.espresso", name = "espresso-core", vers
 #Hilt
 dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 dagger-hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+dagger-hilt-android-extensions = { group = "it.czerwinski.android.hilt", name = "hilt-extensions", version.ref = "hilt-extensions" }
+dagger-hilt-android-extensions-processor = { group = "it.czerwinski.android.hilt", name = "hilt-processor", version.ref = "hilt-extensions" }
 
 #Retrofit
 retrofit2-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
