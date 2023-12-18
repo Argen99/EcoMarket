@@ -46,4 +46,3 @@ object DataModule {
         return retrofit.create(ProductApiService::class.java)
     }
 }
-
