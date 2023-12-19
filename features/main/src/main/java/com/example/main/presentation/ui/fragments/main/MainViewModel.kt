@@ -2,8 +2,10 @@ package com.example.main.presentation.ui.fragments.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.main.domain.model.ProductCategoryModel
 import com.example.main.domain.repository.MainRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -11,6 +13,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val repository: MainRepository
 ): ViewModel() {
+
 
     init {
         viewModelScope.launch {
