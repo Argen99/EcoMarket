@@ -42,17 +42,17 @@ android {
 dependencies {
     implementation(project(":features:main"))
     //Core
-    implementation(libs.core.ktx)
+    implementation(libs.androidx.core)
     //Bundles
     implementation(libs.bundles.retrofit)
     //Test
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
+    testImplementation(libs.test.junit)
+    androidTestImplementation(libs.test.ext.junit)
     //Hilt
-    implementation(libs.dagger.hilt.android)
-    kapt(libs.dagger.hilt.android.compiler)
-    implementation(libs.dagger.hilt.android.extensions)
-    kapt(libs.dagger.hilt.android.extensions.processor)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.hilt.android.extensions)
+    kapt(libs.hilt.android.extensions.processor)
     //Coroutines
     implementation(libs.kotlinx.coroutines)
 }

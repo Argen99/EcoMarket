@@ -53,19 +53,20 @@ dependencies {
     implementation(project(":features:info"))
     implementation(project(":data"))
 
-    implementation(libs.core.ktx)
+    implementation(libs.androidx.core)
 
     //Bundles
     implementation(libs.bundles.ui)
+    implementation("com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.9")
     implementation(libs.bundles.lifecycle)
     implementation(libs.bundles.navigation)
 
     //Test
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+    testImplementation(libs.test.junit)
+    androidTestImplementation(libs.test.ext.junit)
+    androidTestImplementation(libs.test.espresso)
 
     //Hilt
-    implementation(libs.dagger.hilt.android)
-    kapt(libs.dagger.hilt.android.compiler)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 }

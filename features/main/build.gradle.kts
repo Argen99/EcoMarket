@@ -41,13 +41,13 @@ android {
 dependencies {
     implementation(project(":core:ui"))
 
-    implementation(libs.core.ktx)
+    implementation(libs.androidx.core)
     //Bundles
     implementation(libs.bundles.ui)
     implementation(libs.bundles.navigation)
     //Coroutines
     implementation(libs.kotlinx.coroutines)
     //Hilt
-    implementation(libs.dagger.hilt.android)
-    kapt(libs.dagger.hilt.android.compiler)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 }

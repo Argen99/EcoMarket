@@ -1,30 +1,36 @@
 package com.example.main.presentation.ui.fragments.main
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.util.Log
+import android.widget.GridLayout
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
+import by.kirich1409.viewbindingdelegate.viewBinding
+import com.example.main.R
 import com.example.main.databinding.FragmentMainBinding
+import com.example.main.domain.model.ProductCategoryModel
+import com.example.main.presentation.ui.adapters.ProductCategoryAdapter
+import com.example.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MainFragment : Fragment() {
+internal class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(R.layout.fragment_main) {
 
-    private lateinit var binding: FragmentMainBinding
+    override val binding by viewBinding(FragmentMainBinding::bind)
+    override val viewModel: MainViewModel by viewModels()
 
-    private val viewModel by viewModels<MainViewModel>()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentMainBinding.inflate(layoutInflater)
-        return binding.root
+    override fun initialize() {
+        binding.rvCategories.apply {
+            layoutManager = GridLayoutManager(requireContext(), 2)
+        }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun launchObservers() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.productCategoriesState.collect {
+
+            }
+        }
     }
 }

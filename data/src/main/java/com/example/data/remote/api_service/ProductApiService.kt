@@ -6,7 +6,7 @@ import retrofit2.http.GET
 interface ProductApiService {
 
     @GET(PRODUCT_CATEGORY_LIST)
-    suspend fun getProductCategoryList(): List<ProductCategoryDto>
+    suspend fun getProductCategoriesList(): List<ProductCategoryDto>
 
     companion object {
         const val PRODUCT_CATEGORY_LIST = "product-category-list"
