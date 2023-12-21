@@ -1,5 +1,6 @@
 package com.example.main.presentation.ui.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
@@ -9,8 +10,14 @@ import com.example.main.domain.model.ProductCategoryModel
 import com.example.ui.extensions.loadImageWithGlide
 
 class ProductCategoryAdapter(
-    private val categories: List<ProductCategoryModel>
+    private var categories: List<ProductCategoryModel>
 ) : Adapter<ProductCategoryAdapter.ProductCategoryViewHolder>() {
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun submitData(list: List<ProductCategoryModel>) {
+        categories = list
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ProductCategoryViewHolder(
         ItemCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -22,7 +29,8 @@ class ProductCategoryAdapter(
         holder.onBind(categories[position])
     }
 
-    inner class ProductCategoryViewHolder(private val binding: ItemCategoryBinding) : ViewHolder(binding.root) {
+    inner class ProductCategoryViewHolder(private val binding: ItemCategoryBinding) :
+        ViewHolder(binding.root) {
         fun onBind(item: ProductCategoryModel) = with(binding) {
             ivCategoryImage.loadImageWithGlide(item.image)
             tvCategoryTitle.text = item.name

@@ -1,7 +1,5 @@
 package com.example.main.presentation.ui.fragments.main
 
-import android.util.Log
-import android.widget.GridLayout
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -15,21 +13,28 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-internal class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(R.layout.fragment_main) {
+internal class MainFragment :
+    BaseFragment<FragmentMainBinding, MainViewModel>(R.layout.fragment_main) {
 
     override val binding by viewBinding(FragmentMainBinding::bind)
     override val viewModel: MainViewModel by viewModels()
 
+    private var categories = emptyList<ProductCategoryModel>()
+    private val categoryAdapter: ProductCategoryAdapter by lazy {
+        ProductCategoryAdapter(categories)
+    }
+
     override fun initialize() {
         binding.rvCategories.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
+            adapter = categoryAdapter
         }
     }
 
     override fun launchObservers() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.productCategoriesState.collect {
-
+                categoryAdapter.submitData(it)
             }
         }
     }
