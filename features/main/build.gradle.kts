@@ -40,6 +40,7 @@ android {
 
 dependencies {
     implementation(project(":core:ui"))
+    api(project(":core:common"))
 
     implementation(libs.androidx.core)
     //Bundles

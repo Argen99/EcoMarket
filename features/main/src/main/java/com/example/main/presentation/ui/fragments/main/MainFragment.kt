@@ -9,6 +9,7 @@ import com.example.main.databinding.FragmentMainBinding
 import com.example.main.domain.model.ProductCategoryModel
 import com.example.main.presentation.ui.adapters.ProductCategoryAdapter
 import com.example.ui.base.BaseFragment
+import com.example.ui.ui_state.UIState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -34,7 +35,19 @@ internal class MainFragment :
     override fun launchObservers() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.productCategoriesState.collect {
-                categoryAdapter.submitData(it)
+                when(it) {
+                    is UIState.Idle -> {}
+                    is UIState.Loading -> {
+                        binding.progressCircular.show()
+                    }
+                    is UIState.Success -> {
+                        binding.progressCircular.hide()
+                        categoryAdapter.submitData(it.data)
+                    }
+                    is UIState.Error -> {
+                        binding.progressCircular.hide()
+                    }
+                }
             }
         }
     }

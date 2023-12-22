@@ -38,6 +38,8 @@ android {
 
 dependencies {
 
+    implementation(project(":core:common"))
     implementation(libs.androidx.core)
     implementation(libs.bundles.ui)
+    implementation(libs.lifecycle.viewmodel)
 }

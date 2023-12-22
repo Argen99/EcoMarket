@@ -1,5 +1,6 @@
 package com.example.data.remote.repository
 
+import com.example.common.either.Either
 import com.example.data.remote.api_service.ProductApiService
 import com.example.main.domain.model.ProductCategoryModel
 import com.example.main.domain.repository.MainRepository
@@ -16,8 +17,12 @@ class MainRepositoryImpl @Inject constructor(
     private val productApiService: ProductApiService
 ) : MainRepository {
 
-    override fun getProductCategoriesList(): Flow<List<ProductCategoryModel>> = flow {
-        val result = productApiService.getProductCategoriesList().map { it.toDomain() }
-        emit(result)
+    override fun getProductCategoriesList(): Flow<Either<List<ProductCategoryModel>>> = flow {
+        try {
+            val result = productApiService.getProductCategoriesList().map { it.toDomain() }
+            emit(Either.Success(result))
+        } catch (e: Exception) {
+            emit(Either.Error(e))
+        }
     }.flowOn(Dispatchers.IO)
 }
