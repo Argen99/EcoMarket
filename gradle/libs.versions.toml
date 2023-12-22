@@ -9,8 +9,7 @@ appcompat = "1.6.1"
 material = "1.10.0"
 view-binding-delegate = "1.5.9"
 constraintlayout = "2.1.4"
-lifecycle-livedata-ktx = "2.6.2"
-lifecycle-viewmodel-ktx = "2.6.2"
+lifecycle = "2.6.2"
 navigation-fragment-ktx = "2.7.5"
 navigation-ui-ktx = "2.7.5"
 hilt = "2.49"
@@ -33,8 +32,9 @@ ui-viewBindingDelegate = { group = "com.github.kirich1409", name = "viewbindingp
 ui-glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 
 #LifeCycle
-lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle-livedata-ktx" }
-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle-viewmodel-ktx" }
+lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
+lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
 
 #Navigation
 navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation-fragment-ktx" }

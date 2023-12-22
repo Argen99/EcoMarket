@@ -33,22 +33,21 @@ internal class MainFragment :
     }
 
     override fun launchObservers() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.productCategoriesState.collect {
-                when(it) {
-                    is UIState.Idle -> {}
-                    is UIState.Loading -> {
-                        binding.progressCircular.show()
-                    }
-                    is UIState.Success -> {
-                        binding.progressCircular.hide()
-                        categoryAdapter.submitData(it.data)
-                    }
-                    is UIState.Error -> {
-                        binding.progressCircular.hide()
-                    }
-                }
+        productCategoriesObserver()
+    }
+
+    private fun productCategoriesObserver() {
+        viewModel.productCategoriesState.spectateUiState(
+            loading = {
+                binding.progressCircular.show()
+            },
+            success = { data ->
+                binding.progressCircular.hide()
+                categoryAdapter.submitData(data)
+            },
+            error = {
+                binding.progressCircular.hide()
             }
-        }
+        )
     }
 }

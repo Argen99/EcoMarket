@@ -41,5 +41,6 @@ dependencies {
     implementation(project(":core:common"))
     implementation(libs.androidx.core)
     implementation(libs.bundles.ui)
-    implementation(libs.lifecycle.viewmodel)
+    implementation(libs.bundles.lifecycle)
+    implementation(libs.kotlinx.coroutines)
 }
