@@ -25,10 +25,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_margin="12dp"
-            android:fontFamily="@font/tt_norms_pro"
+            android:fontFamily="@font/tt_norms_pro_bold"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:textStyle="bold"
             tools:text="Фрукты" />
 
     </FrameLayout>
