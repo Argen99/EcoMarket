@@ -1,7 +1,7 @@
 package com.example.data.di
 
 import com.example.data.BuildConfig.BASE_URL
-import com.example.data.remote.api_service.ProductApiService
+import com.example.data.remote.api_service.ProductsApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -42,7 +42,7 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun provideProductApiService(retrofit: Retrofit): ProductApiService {
-        return retrofit.create(ProductApiService::class.java)
+    fun provideProductApiService(retrofit: Retrofit): ProductsApiService {
+        return retrofit.create(ProductsApiService::class.java)
     }
 }

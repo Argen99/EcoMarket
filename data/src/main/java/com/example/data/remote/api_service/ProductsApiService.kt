@@ -3,7 +3,7 @@ package com.example.data.remote.api_service
 import com.example.data.remote.model.ProductCategoryDto
 import retrofit2.http.GET
 
-interface ProductApiService {
+interface ProductsApiService {
 
     @GET(PRODUCT_CATEGORY_LIST)
     suspend fun getProductCategoriesList(): List<ProductCategoryDto>

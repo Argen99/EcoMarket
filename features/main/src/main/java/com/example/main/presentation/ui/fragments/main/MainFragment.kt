@@ -1,7 +1,7 @@
 package com.example.main.presentation.ui.fragments.main
 
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.main.R
@@ -9,9 +9,7 @@ import com.example.main.databinding.FragmentMainBinding
 import com.example.main.domain.model.ProductCategoryModel
 import com.example.main.presentation.ui.adapters.ProductCategoryAdapter
 import com.example.ui.base.BaseFragment
-import com.example.ui.ui_state.UIState
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 internal class MainFragment :
@@ -22,7 +20,7 @@ internal class MainFragment :
 
     private var categories = emptyList<ProductCategoryModel>()
     private val categoryAdapter: ProductCategoryAdapter by lazy {
-        ProductCategoryAdapter(categories)
+        ProductCategoryAdapter(categories, ::onItemClick)
     }
 
     override fun initialize() {
@@ -49,5 +47,10 @@ internal class MainFragment :
                 binding.progressCircular.hide()
             }
         )
+    }
+
+    private fun onItemClick(productId: Int) {
+        findNavController()
+            .navigate(MainFragmentDirections.actionMainFragmentToProductsFragment(productId))
     }
 }

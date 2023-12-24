@@ -1,9 +1,9 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.com.android.application)
-    alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.agp.application)
+    alias(libs.plugins.kotlin.android)
     kotlin("kapt")
-    id(libs.plugins.com.google.dagger.hilt.android.get().pluginId)
+    id(libs.plugins.hilt.android.get().pluginId)
 }
 
 android {
@@ -45,19 +45,17 @@ android {
 }
 
 dependencies {
-
-    //Projects
     implementation(project(":features:main"))
     implementation(project(":features:basket"))
     implementation(project(":features:story"))
     implementation(project(":features:info"))
     implementation(project(":data"))
+    implementation(project(":core:ui"))
 
     implementation(libs.androidx.core)
 
     //Bundles
     implementation(libs.bundles.ui)
-    implementation("com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.9")
     implementation(libs.bundles.lifecycle)
     implementation(libs.bundles.navigation)
 

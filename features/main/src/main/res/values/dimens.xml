@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="radio_btn_vertical_padding">8dp</dimen>
+    <dimen name="radio_btn_horizontal_padding">12dp</dimen>
+    <dimen name="radio_btn_margin_between_items">8dp</dimen>
+</resources>

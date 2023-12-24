@@ -9,5 +9,19 @@
         android:id="@+id/mainFragment"
         android:name="com.example.main.presentation.ui.fragments.main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.example.main.presentation.ui.fragments.products.ProductsFragment"
+        android:label="fragment_products"
+        tools:layout="@layout/fragment_products">
+        <argument
+            android:name="productId"
+            app:argType="integer"/>
+    </fragment>
 </navigation>

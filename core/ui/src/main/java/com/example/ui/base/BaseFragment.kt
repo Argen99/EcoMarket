@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-abstract class BaseFragment<VB: ViewBinding, VM: ViewModel>(@LayoutRes layoutId: Int): Fragment(layoutId) {
+abstract class BaseFragment<VB: ViewBinding, VM: BaseViewModel>(@LayoutRes layoutId: Int): Fragment(layoutId) {
 
     protected abstract val binding: VB
     protected abstract val viewModel: VM
