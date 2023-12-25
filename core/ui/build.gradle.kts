@@ -42,5 +42,5 @@ dependencies {
     implementation(libs.androidx.core)
     implementation(libs.bundles.ui)
     implementation(libs.bundles.lifecycle)
-    implementation(libs.kotlinx.coroutines)
+    implementation(libs.coroutines.android)
 }

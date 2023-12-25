@@ -54,5 +54,7 @@ dependencies {
     implementation(libs.hilt.android.extensions)
     kapt(libs.hilt.android.extensions.processor)
     //Coroutines
-    implementation(libs.kotlinx.coroutines)
+    implementation(libs.coroutines.android)
+    //Paging
+    implementation(libs.paging.runtime)
 }

@@ -48,8 +48,10 @@ dependencies {
     implementation(libs.bundles.ui)
     implementation(libs.bundles.navigation)
     //Coroutines
-    implementation(libs.kotlinx.coroutines)
+    implementation(libs.coroutines.android)
     //Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
+    //Paging
+    implementation(libs.paging.runtime)
 }
