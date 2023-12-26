@@ -1,6 +1,5 @@
 package com.example.main.presentation.ui.fragments.products
 
-import android.util.Log
 import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
@@ -14,11 +13,9 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.main.R
 import com.example.main.databinding.FragmentProductsBinding
 import com.example.main.presentation.ui.adapters.CharacterPagingAdapter
-import com.example.main.presentation.ui.adapters.ProductsPagingAdapter
 import com.example.ui.base.BaseFragment
 import com.example.ui.extensions.setPadding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -73,9 +70,8 @@ class ProductsFragment :
         )
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.test.collect {
+            viewModel.getProduct().collect {
                 productsAdapter.submitData(it)
-                Log.e("ololo", "rrr ${productsAdapter.itemCount}")
             }
         }
     }

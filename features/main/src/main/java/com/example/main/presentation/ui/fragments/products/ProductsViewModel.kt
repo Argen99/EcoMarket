@@ -1,7 +1,5 @@
 package com.example.main.presentation.ui.fragments.products
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
@@ -31,26 +29,27 @@ class ProductsViewModel @Inject constructor(
     private val _productCategoriesState = mutableUiStateFlow<List<ProductCategoryModel>>()
     val productCategoriesState = _productCategoriesState.asStateFlow()
 
-    private val searchBy = MutableLiveData("")
+    private val searchBy = MutableStateFlow("")
     private val filterByCategory = MutableStateFlow("")
-
-    val test: Flow<PagingData<ProductModel>>
 
     init {
         getProductCategories()
-        test = searchBy.asFlow()
-            .debounce(500)
-            .flatMapLatest {
-                getProductsListUseCase(it)
-            }
-            .cachedIn(viewModelScope)
     }
 
     private fun getProductCategories() {
         getProductCategoriesUseCase().gatherRequest(_productCategoriesState)
     }
 
+    fun getProduct(): Flow<PagingData<ProductModel>> {
+        return combine(searchBy, filterByCategory) { search, filter ->
+            Pair(search, filter)
+        }.flatMapLatest { (s,d) ->
+            getProductsListUseCase(s)
+        }.debounce(500).cachedIn(viewModelScope)
+    }
+
     fun search(text: String) {
+        if (text == searchBy.value) return
         searchBy.value = text
     }
 }

@@ -13,16 +13,20 @@ class ProductsPagingSource @Inject constructor(
 ) : PagingSource<Int, ProductModel>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ProductModel> {
+        val page = params.key ?: 1
         return try {
-            val nextPageNumber = params.key ?: 1
             val response = productsApiService.getProductList(
-                search = text ,page = nextPageNumber, limit = params.loadSize)
-            val nextPage = Uri.parse(response.next).getQueryParameter("page")?.toInt()
-            val prevPage = Uri.parse(response.previous).getQueryParameter("page")?.toInt()
+                search = text, page = page, limit = params.loadSize
+            )
+            val nextPage =
+                response.next?.let { Uri.parse(response.next).getQueryParameter("page")?.toInt() }
+            val prevPage = response.previous?.let {
+                Uri.parse(response.previous).getQueryParameter("page")?.toInt()
+            }
             LoadResult.Page(
                 data = response.results.map { it.toDomain() },
-                prevKey = prevPage,
-                nextKey = nextPage
+                nextKey = nextPage,
+                prevKey = prevPage
             )
         } catch (e: Exception) {
             LoadResult.Error(e)
