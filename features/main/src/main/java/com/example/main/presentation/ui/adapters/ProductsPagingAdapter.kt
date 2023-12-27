@@ -9,7 +9,11 @@ import com.example.main.databinding.ItemProductBinding
 import com.example.main.domain.model.ProductModel
 import com.example.ui.extensions.loadImageWithGlide
 
-class ProductsPagingAdapter :
+class ProductsPagingAdapter(
+    private val onItemClick: (id: Int) -> Unit,
+    private val onPlusClick: (product: ProductModel) -> Unit,
+    private val onMinusClick: (product: ProductModel) -> Unit,
+) :
     PagingDataAdapter<ProductModel, ProductsPagingAdapter.ProductsViewHolder>(diffCallBack) {
 
     override fun onBindViewHolder(holder: ProductsViewHolder, position: Int) {
@@ -24,48 +28,17 @@ class ProductsPagingAdapter :
         fun onBind(product: ProductModel) = with(binding) {
             ivProductImage.loadImageWithGlide(product.image)
             tvProductPrice.text = product.price
+            tvProductTitle.text = product.title
         }
-    }
-
-    companion object {
-        val diffCallBack = object : DiffUtil.ItemCallback<ProductModel>() {
-            override fun areItemsTheSame(oldItem: ProductModel, newItem: ProductModel): Boolean {
-                return oldItem.id == newItem.id
-            }
-
-            override fun areContentsTheSame(oldItem: ProductModel, newItem: ProductModel): Boolean {
-                return oldItem == newItem
-            }
-        }
-    }
-}
-
-class CharacterPagingAdapter(
-    private val onItemCLick: (id: String) -> Unit,
-) : PagingDataAdapter<ProductModel, CharacterPagingAdapter.CharacterViewHolder>(diffCallBack) {
-
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = CharacterViewHolder(
-        ItemProductBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false
-        )
-    )
-
-    override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
-        getItem(position)?.let { holder.onBind(it) }
-    }
-
-    inner class CharacterViewHolder(private val binding: ItemProductBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun onBind(character: ProductModel) = with(binding) {
-            ivProductImage.loadImageWithGlide(character.image)
-            tvProductPrice.text = character.title
-        }
-
         init {
-            itemView.setOnClickListener {
-                onItemCLick(getItem(absoluteAdapterPosition)?.id.toString())
+            binding.root.setOnClickListener {
+                getItem(absoluteAdapterPosition)?.let { onItemClick(it.id) }
+            }
+            binding.btnAdd.setOnClickListener {
+                getItem(absoluteAdapterPosition)?.let { onPlusClick(it) }
+            }
+            binding.btnMinus.setOnClickListener {
+                getItem(absoluteAdapterPosition)?.let { onMinusClick(it) }
             }
         }
     }

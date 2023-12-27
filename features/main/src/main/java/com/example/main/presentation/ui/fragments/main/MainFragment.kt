@@ -49,8 +49,8 @@ internal class MainFragment :
         )
     }
 
-    private fun onItemClick(productId: Int) {
+    private fun onItemClick(categoryName: String) {
         findNavController()
-            .navigate(MainFragmentDirections.actionMainFragmentToProductsFragment(productId))
+            .navigate(MainFragmentDirections.actionMainFragmentToProductsFragment(categoryName))
     }
 }

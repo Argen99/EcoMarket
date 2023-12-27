@@ -37,11 +37,15 @@ android {
 
 dependencies {
     implementation(project(":core:ui"))
+    implementation(project(":core:common"))
 
     implementation(libs.androidx.core)
+    //Bundles
     implementation(libs.bundles.ui)
     implementation(libs.bundles.navigation)
-
+    //Coroutines
+    implementation(libs.coroutines.android)
+    //Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
 }

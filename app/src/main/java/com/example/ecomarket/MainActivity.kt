@@ -2,6 +2,7 @@ package com.example.ecomarket
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -9,6 +10,7 @@ import com.example.ecomarket.databinding.ActivityMainBinding
 import com.example.ui.extensions.hide
 import com.example.ui.extensions.show
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
@@ -32,7 +34,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                     binding.navView.show()
                 }
                 else -> {
-                    binding.navView.hide()
+                    lifecycleScope.launch { binding.navView.hide() }
                 }
             }
         }

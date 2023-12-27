@@ -11,7 +11,7 @@ import com.example.ui.extensions.loadImageWithGlide
 
 class ProductCategoryAdapter(
     private var categories: List<ProductCategoryModel>,
-    private val onItemClick:(id: Int) -> Unit
+    private val onItemClick:(id: String) -> Unit
 ) : Adapter<ProductCategoryAdapter.ProductCategoryViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
@@ -39,7 +39,7 @@ class ProductCategoryAdapter(
 
         init {
             binding.root.setOnClickListener {
-                onItemClick(categories[adapterPosition].id)
+                onItemClick(categories[absoluteAdapterPosition].name)
             }
         }
     }

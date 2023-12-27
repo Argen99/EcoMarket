@@ -1,10 +1,15 @@
 package com.example.data.di
 
+import android.content.Context
+import androidx.room.Room
 import com.example.data.BuildConfig.BASE_URL
+import com.example.data.local.dao.ProductsDao
+import com.example.data.local.room_db.ProductDataBase
 import com.example.data.remote.api_service.ProductsApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -45,4 +50,15 @@ object DataModule {
     fun provideProductApiService(retrofit: Retrofit): ProductsApiService {
         return retrofit.create(ProductsApiService::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun generateRoomDatabase(@ApplicationContext context: Context) =
+        Room.databaseBuilder(context, ProductDataBase::class.java, "eco_market.db")
+            .build()
+
+    @Singleton
+    @Provides
+    fun generateProductDao(productDataBase: ProductDataBase): ProductsDao =
+        productDataBase.getProductsDao()
 }

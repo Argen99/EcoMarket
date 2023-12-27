@@ -1,4 +1,4 @@
-package com.example.basket.presentation.ui.fragments
+package com.example.basket.presentation.ui.fragments.basket
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

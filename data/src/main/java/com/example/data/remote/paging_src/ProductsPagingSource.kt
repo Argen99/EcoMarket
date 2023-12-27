@@ -9,14 +9,15 @@ import javax.inject.Inject
 
 class ProductsPagingSource @Inject constructor(
     private val productsApiService: ProductsApiService,
-    private val text: String?
+    private val text: String?,
+    private val categoryName: String?,
 ) : PagingSource<Int, ProductModel>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ProductModel> {
         val page = params.key ?: 1
         return try {
             val response = productsApiService.getProductList(
-                search = text, page = page, limit = params.loadSize
+                search = text, page = page, limit = params.loadSize, categoryName = categoryName
             )
             val nextPage =
                 response.next?.let { Uri.parse(response.next).getQueryParameter("page")?.toInt() }

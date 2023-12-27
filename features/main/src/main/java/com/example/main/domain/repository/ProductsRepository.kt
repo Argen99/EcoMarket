@@ -10,5 +10,7 @@ interface ProductsRepository {
 
     fun getProductCategoriesList() : Flow<Either<List<ProductCategoryModel>>>
 
-    fun getProductsList(text: String?) : Flow<PagingData<ProductModel>>
+    fun getProductsList(text: String?,categoryName: String?) : Flow<PagingData<ProductModel>>
+    fun getCartProducts() : Flow<List<ProductModel>>
+    suspend fun addToCart(product: ProductModel)
 }

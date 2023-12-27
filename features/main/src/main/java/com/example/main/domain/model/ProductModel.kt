@@ -6,5 +6,6 @@ data class ProductModel(
     val description: String,
     val category: Int,
     val image: String?,
-    val price: String
+    val price: String,
+    val count: Int? = null,
 )

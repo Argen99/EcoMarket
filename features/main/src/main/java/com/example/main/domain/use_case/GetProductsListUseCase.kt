@@ -6,5 +6,6 @@ import javax.inject.Inject
 class GetProductsListUseCase @Inject constructor(
     private val productsRepository: ProductsRepository
 ) {
-    operator fun invoke(text: String?) = productsRepository.getProductsList(text)
+    operator fun invoke(text: String?, categoryName: String?) =
+        productsRepository.getProductsList(text, categoryName)
 }
